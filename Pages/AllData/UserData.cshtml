@@ -1,0 +1,125 @@
+﻿@page  "{SeachElement?}"
+@model RegUser.Pages.AllData.UserDataModel
+@{
+}
+
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col">
+            <h2 class="text-primary">User Data</h2>
+            
+        </div>
+
+    </div>
+    </div>
+
+    <br />
+    @if(TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<div class="row">
+        <form>
+            <p>
+                <input placeholder="Search Name or Email" asp-for="SearchElement" />
+               <input type="submit" value="Search" class="btn btn-warning" />
+                <a asp-page="UserData" asp-for="UserData" class="btn btn-dark">Back to list</a>
+            </p>
+        </form>
+    </div>
+
+<br />
+    <br />
+
+    <form method="post">
+        <div class="d-flex justify-content-start">
+    <input type="submit" value="Export" asp-page-handler="Export" />
+    </div>
+    </form>
+
+    <br /><br />
+
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Email
+                </th>
+                <th>
+                <a asp-page="UserData" asp-page-handler="Sort" class="text-black" asp-route-sortOrder="@Model.SortByName">FullName</a>
+                @* @Html.DisplayNameFor(model => model.SortByName) *@
+                </th>
+                <th>
+                    MobileNumber
+                </th>
+                <th>
+                    Salutation
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                <a asp-page="UserData" asp-page-handler="Sort" class="text-black" asp-route-sortOrder="@Model.SortByDate">DOB</a>
+                </th>
+                <th>
+                    Password
+                </th>
+                <th>
+                    ConfirmPassword
+                </th>
+                <th>
+                <a asp-page="UserData" asp-page-handler="Sort" class="text-black" asp-route-sortOrder="@Model.SortByMOD">Modification Date</a>
+                </th>
+                <th>
+                    Action
+                </th>
+
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+            @foreach (var obj in Model.UserDetails)
+            {
+                <tr>
+                    <td width="5%">@obj.Salutation</td>
+                    <td width="5%">@obj.FullName</td>
+                    <td width="5%">@obj.MobileNumber</td>
+                    <td width="5%">@obj.Email</td>
+                    <td width="5%">@obj.Gender</td>
+                    <td width="8%">@obj.Date.ToString("dd-MMM-yyyy")</td>
+                    <td width="5%">@obj.Password</td>
+                    <td width="5%">@obj.ConfirmPassword</td>
+                    <td width="5%">@obj.ModDate</td>
+                    <td width="8%">
+                        <div>
+                        <a asp-page="/AllData/Edit" asp-route-email ="@obj.Email" class="btn btn-primary btn-sm">Edit</a>
+                        <a asp-page="/AllData/Delete" asp-route-email="@obj.Email" class=" btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+ 
+@{
+    var prevDisabled = !Model.UserDetails.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.UserDetails.HasNextPage ? "disabled" : "";
+}
+<br />
+<a asp-page="/AllData/UserData"
+   asp-route-pageIndex="@(Model.UserDetails.PageIndex-1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">Previous</a>
+
+<a asp-page="/AllData/UserData"
+   asp-route-pageIndex="@(Model.UserDetails.PageIndex+1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">Next</a>

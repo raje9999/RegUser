@@ -1,0 +1,172 @@
+﻿@page
+@model RegUser.Pages.AllData.EditModel
+@{
+    Layout = "Layout1.cshtml";
+}
+<br />
+<br>
+<br />
+<br>
+<h3>Update Details</h3>
+<br />
+<br />
+<br>
+<div class="row">
+
+    <div class="col-lg-9 mx-auto rounded border p-3">
+
+        <form method="post">
+            @* <div asp-validation-summary="All"></div> *@
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label">Salutation</label>
+
+                <div class="col-sm-8">
+
+                    <select class="form-select" asp-for="UserDetails.Salutation">
+
+                        <option value="Mr">Mr</option>
+
+                        <option value="Ms">Ms</option>
+
+                        <option value="Mrs">Mrs</option>
+
+                    </select>
+
+                    <span class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.FullName">First Name</label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.FullName" class="form-control" id="username" />
+
+                    <span asp-validation-for="UserDetails.FullName" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.Email">Email</label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.Email" class="form-control" readonly/>
+
+                    <span asp-validation-for="UserDetails.Email" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.MobileNumber">Mobile Number</label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.MobileNumber" class="form-control" />
+
+                    <span asp-validation-for="UserDetails.MobileNumber" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.Date">DOB</label>
+
+                <div class="col-sm-8">
+
+
+
+                    <input type="date" class="form-control" asp-for="UserDetails.Date" />
+
+                    <span asp-validation-for="UserDetails.Date" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.Gender"></label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.Gender" type="radio" value="Male" />Male
+                    @* <label class="col-sm-4 col-form-labe"l>Male</label> *@
+                    <input asp-for="UserDetails.Gender" type="radio" value="Female" />Female
+                    @* <label class="col-sm-4 col-form-label">Female</label> *@
+
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.Password">Password</label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.Password" class="form-control" />
+
+                    <span asp-validation-for="UserDetails.Password" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <label class="col-sm-4 col-form-label" asp-for="UserDetails.ConfirmPassword">Confirm Password</label>
+
+                <div class="col-sm-8">
+
+                    <input asp-for="UserDetails.ConfirmPassword" class="form-control" />
+
+                    <span asp-validation-for="UserDetails.ConfirmPassword" class="text-danger"></span>
+
+                </div>
+
+            </div>
+
+             <div>
+
+                <input asp-for="UserDetails.Check" type="checkbox"> I accept the term and conditions.
+
+            </div>
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+
+        </form>
+
+        @*  <div class="card-footer text-center"> *@
+        <a asp-page="/AllData/UserData" class="btn btn-primary rounded-pill">Back to Details</a>
+        @* </div> *@
+
+    </div>
+</div>
+         

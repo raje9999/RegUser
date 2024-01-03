@@ -1,0 +1,51 @@
+﻿@page
+@model RegUser.Pages.AllData.LoginPageModel
+@{
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="All"></div>
+
+                        <div class="row mb-3">
+                            <label asp-for="Email" class="col-sm-4 col-form-label">Email</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" asp-for="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label asp-for="Password" class="col-sm-4 col-form-label">Password</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" asp-for="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <input type="checkbox" asp-for="UserDetails.Check">  Stay signed in?
+                            <span asp-validation-for="UserDetails.Check" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <button @* asp-page="/AllData/Welcome" *@ type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+                @*  <div class="card-footer text-center"> *@
+                <a asp-page="/AllData/RegisterPage" class="btn btn-primary rounded-pill">Create an acoount</a>
+                @* </div> *@
+            </div>
+        </div>
+    </div>
+</div>
